@@ -92,10 +92,10 @@ https://github.com/kemomi/DeepLearning/issue
 |  名词   | 描述  |
 |  :----:  | :----  |
 | 数据集（DataSet）  | 用于标注、训练、分析等的数据集合，支持您将存储在OSS、NAS、MaxCompute等存储介质中的结构化、非结构化数据或目录注册为数据集。同时，PAI支持统一管理数据集的存储、版本、数据结构等信息。 |
-|   |  |
-|   |  |
-|   |  |
-|   |  |
+|   模型（Model）| 模型是您基于数据集和算法代码通过训练任务产出的结果，可以预测新数据。 |
+| 工作流草稿（PipelineDraft）  | 您在Designer画布上操作的编辑状态的工作流对象，支持重复编辑生成不同的Pipeline。PipelineDraft提交运行生成PipelineRun。 |
+| 工作流快照（SnapShot）  | PipelineDraft每次运行（包括完整运行、单节点运行、部分节点运行）时会记录完整PipelineDraft的配置信息，包括节点配置、运行参数、执行方式等，可以用于PipelineDraft的版本记录及配置回滚。 |
+|  工作流任务（PipelineRun） | 一次工作流的任务执行。您可以通过Designer提交PipelineDraft运行，或通过SDK直接提交Pipeline运行，生成一个PipelineRun。 |
 
 
 
