@@ -82,8 +82,37 @@ https://github.com/kemomi/DeepLearning/issue
 其它各类预测场景：降雨预测或足球比赛结果预测。
 
 机器学习包括传统机器学习和深度学习。传统机器学习分为以下几类：
+
 有监督学习（Supervised Learning）：每个样本都有对应的期望值，通过搭建模型，实现从输入特征向量到目标值的映射。例如解决回归和分类问题。
 无监督学习（Unsupervised Learning）：所有样本没有目标值，期望从数据本身发现一些潜在规律。例如解决聚类问题。
 增强学习（Reinforcement Learning）：相对比较复杂，系统和外界环境不断交互，根据外界反馈决定自身行为，达到目标最优化。例如阿尔法围棋和无人驾驶
+
+## 2.AI开发名词
+
+数据集（DataSet）	用于标注、训练、分析等的数据集合，支持您将存储在OSS、NAS、MaxCompute等存储介质中的结构化、非结构化数据或目录注册为数据集。同时，PAI支持统一管理数据集的存储、版本、数据结构等信息。
+工作流（Pipeline）	您构建DAG（有向无环图）用来实现组件之间上下游逻辑调度的对象，是一个静态概念。构建完成后，PAI支持对它进行重复提交运行，生成PipelineRun。
+工作流草稿（PipelineDraft）	您在Designer画布上操作的编辑状态的工作流对象，支持重复编辑生成不同的Pipeline。PipelineDraft提交运行生成PipelineRun。
+组件（Component）	您在PAI工作流和工作流草稿中编辑以及工作流任务执行的最小单元。组件可以来源于：
+•	预置组件（Build-in Component）：PAI预置了基于阿里巴巴最佳实践的多类组件，涵盖从数据预处理到模型训练及预测的全流程。
+•	自定义组件（Custom Component）：PAI支持您基于代码和镜像，自己定义可被工作流组合编排的组件。
+节点（Node）	被拖到画布上的一个组件，形成工作流中的一个节点。
+工作流快照（SnapShot）	PipelineDraft每次运行（包括完整运行、单节点运行、部分节点运行）时会记录完整PipelineDraft的配置信息，包括节点配置、运行参数、执行方式等，可以用于PipelineDraft的版本记录及配置回滚。
+工作流任务（PipelineRun）	一次工作流的任务执行。您可以通过Designer提交PipelineDraft运行，或通过SDK直接提交Pipeline运行，生成一个PipelineRun。
+作业（Job）	强调运行在各种计算资源中的任务。例如DLCJob，MCJob。作业（Job）与Run和PipelineRun概念相比，属于相对底层的概念。
+任务（Run）	一个Run指一次任务执行，兼容MLFlow中的概念，必须归属于某一个Experiment。您可以使用Run跟踪PAI上提交的训练任务，也可以在本地使用MLflow Client直接创建一次任务。
+模型（Model）	模型是您基于数据集和算法代码通过训练任务产出的结果，可以预测新数据。
+Processor	在线预测逻辑（模型加载和请求预测逻辑）的程序包，通常与模型文件一起部署，从而获得模型服务。PAI支持以下两类Processor：
+•	预置Processor：针对常用的PMML、TensorFlow等模型，EAS提供了预置的Processor。
+•	自定义Processor：如果EAS提供的预置Processor无法满足模型部署需求，您可以根据Processor的开发标准自定义Processor。
+模型服务（Service）	模型文件和在线预测逻辑代码部署成的常驻服务。您可以对模型服务进行创建、更新、停止、启动、扩容及缩容操作。
+镜像（Image）	PAI支持您将Docker镜像作为AI资产进行管理，支持以下镜像来源：
+•	PAI官方镜像
+•	您通过DSW保存镜像生成的镜像
+•	您在ACR中的镜像
+镜像可以用于工作流中构建自定义组件完成指定的任务，在DSW中作为环境拉起DSW实例，也可以在提交训练任务时被指定为执行环境。
+实例（Instance）	计算资源被启动的最小单元，包括以下实例：
+•	DSW实例：Notebook实例，每个实例对应一定的计算资源，可以编辑代码、调试及训练。
+•	EAS服务实例：服务进程，每个服务可以部署多个服务实例以提高能够支持的并发请求数。
+
 
 
